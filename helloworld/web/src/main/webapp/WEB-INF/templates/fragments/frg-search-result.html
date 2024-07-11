@@ -1,0 +1,37 @@
+<!-- <form id="frm_searchmos" action="searchmos/upload" method="POST" enctype="multipart/form-data"> -->
+<!-- 	<div> -->
+<!-- 		<div class="Mrphs-toolTitleNav__button_container "> -->
+<!-- 			<div> -->
+<!-- 				<input name="attachment" class="input-file" type="file" id="attachment"/> -->
+<!-- 				<span>Upload an image file or zip file from your computer (<100MBs)</span> -->
+<!-- 			</div> -->
+<!-- 			<nav class="Mrphs-toolTitleNav Mrphs-container--toolTitleNav" aria-label="Tool navigation"> -->
+<!-- 				<button id="btnSave" class="btn btn-primary" disabled="true">Export</button> -->
+<!-- 			</nav> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- 	<!--<div id="tblEmployee" class="table-responsive scroll-container">--> -->
+<!-- 	<div> -->
+<!-- 	<p id="resultText"></p> -->
+<!-- 	</div> -->
+<!-- </form> -->
+<!-- <div > -->
+<!-- 	<img th:src="@{'data:image/jpeg;base64,'+${image}}"> -->
+<!-- </div> -->
+    <h1>Uploaded Images</h1>
+
+    <!-- Form for uploading image -->
+    <form id="frm_searchmos" th:action="@{/searchmos/upload}" method="post" enctype="multipart/form-data">
+        <input type="file" name="attachment">
+        <button type="submit">Upload Image</button>
+        <span>Upload an image file or zip file from your computer (<100MBs)</span> -->
+    </form>
+
+    <!-- Image grid container -->
+    <div class="image-grid">
+        <!-- Loop through images using Thymeleaf -->
+        <div th:each="file: ${filee}" class="image-item">
+            <img th:if="${file[1].startsWith('image/')}" th:src="@{'data:image/jpeg;base64,' + ${file[0]}}" alt="Uploaded Image">
+            <video th:if="${file[1].startsWith('video/')}" th:src="@{'data:video/mp4;base64,' + ${file[0]}}" alt="Uploaded Video" controls></video>
+        </div>
+    </div>
